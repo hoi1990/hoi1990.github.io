@@ -1,0 +1,174 @@
+<html> 
+<head> 
+<title> TM_setup_randomizer </title> 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <style>
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  width: 100%;
+  height: 200px;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+
+<!--javascript程式——End--> 
+</head> 
+<body> 
+	<p>Welcome to use Terra Mystica Set up helper  </p>
+	
+	<b id='boldStuff'>Number of Players is 5</b>
+	<br> 
+  <input type="radio" name="numberOfPlayers" value="2" onclick="checkNumOfPlayers()"> 2
+  <input type="radio" name="numberOfPlayers" value="3" onclick="checkNumOfPlayers()"> 3
+  <input type="radio" name="numberOfPlayers" value="4" onclick="checkNumOfPlayers()"> 4
+  <input type="radio" name="numberOfPlayers" value="5" onclick="checkNumOfPlayers()" checked> 5
+  <br>  
+
+<p id='mapp'></p>
+<!-- <img src="icon/Auren.png" style="width:300px"> -->
+
+<table>
+	<tr>
+    <td id="firstCol"></td>
+	    <td>
+	    	
+	    		<table>
+	    		<tr>
+	    			<td id="secondColFirstRow"></td>
+	    			<td id='factions'></td>
+	    		</tr>
+	    		</table>
+	    	
+	    	<div id="secondColSecondRow"></div>
+		</td>
+	</tr>
+
+
+</table>
+<input type='button' onclick='changeText()' value="Set up!" class="button">
+</body> 
+</html> 
+
+<script language="javascript">
+var numOfP = 5;
+var ArrayOfMap = ['Base Map', 'Revised Base Map (Reverse side of Fire & Ice)', 'Fire & Ice'];
+var ArrayOfFinalScoringTile = ['icon/finalScoring_distance.jpg', 'icon/finalScoring_edge.jpg', 'icon/finalScoring_seperate.jpg','icon/finalScoring_width.jpg'];
+
+var ArrayOfScoringTile = ['icon/scoring_1pristM.jpg','icon/scoring_2fireW.jpg','icon/scoring_2windW.jpg','icon/scoring_4aquaP.jpg','icon/scoring_4aquaS.jpg','icon/scoring_4fireM.jpg','icon/scoring_4landS.jpg','icon/scoring_4windS.jpg','icon/scoring_1LandM.jpg'];
+
+var ArrayOfBonusTile = ['icon/bonus_1s.jpg','icon/bonus_3p1w.jpg','icon/bonus_4g.jpg','icon/bonus_6g.jpg','icon/bonus_dw.jpg','icon/bonus_priest.jpg','icon/bonus_range.jpg','icon/bonus_rangeVP.jpg','icon/bonus_SH.jpg','icon/bonus_tp.jpg']; 
+
+var ArrayOfFactions = [['Fakirs.png','Nomads.png'],['Auren.png','Witches.png'],['Engineers.png','Dwarves.png'],['ChaosMagicians.png','Giants.png'],['Mermaids.png','Swarmlings.png'],['Cultists.png','Halflings.png'],['Alchemists.png','Darklings.png'],['Yetis.png','IceMaidens.png'],['Dragonlords.png','Acolytes.png'],['Riverwalkers.png','Shapeshifters.png']];
+
+var audio = new Audio();
+audio.src = "icon/campana_aoe.mp3";
+
+function checkNumOfPlayers()
+{
+
+	//console.log(document.querySelector('input[name="numberOfPlayers"]:checked').value);
+	numOfP = document.querySelector('input[name="numberOfPlayers"]:checked').value;
+	document.getElementById('boldStuff').innerHTML = "Number of Players is " + numOfP;
+	
+
+
+}
+
+function changeText()
+{	audio.play();
+	document.getElementById('firstCol').innerHTML="";
+	document.getElementById('secondColFirstRow').innerHTML="";
+	document.getElementById('secondColSecondRow').innerHTML="";
+	document.getElementById('mapp').innerHTML="Playing Map: " + ArrayOfMap[Math.floor(Math.random()*3)];
+	document.getElementById('factions').innerHTML="";
+	var img = document.createElement('img'); 
+	  img.src = ArrayOfFinalScoringTile[Math.floor(Math.random()*4)];           
+	  img.style="width:300px"	  //console.log(ima);
+
+	  document.getElementById('secondColFirstRow').appendChild(img);   
+	//document.getElementById('boldStuff').innerHTML = Math.random();
+	var tempIndex;
+	var temp = ArrayOfScoringTile.slice();	
+	var showScoringTile = [];
+	var roundSixScoring = Math.floor(Math.random()*(temp.length-1));
+	showScoringTile.push(temp[roundSixScoring]);
+	temp.splice(roundSixScoring,1);
+	roundSixScoring = Math.floor(Math.random()*(temp.length-1));
+	showScoringTile.push(temp[roundSixScoring]);
+	temp.splice(roundSixScoring,1);
+	var i;
+		for (i = 0; i < 4; i++) {
+		  	roundSixScoring = Math.floor(Math.random()*temp.length);
+			showScoringTile.push(temp[roundSixScoring]);
+			temp.splice(roundSixScoring,1);
+		}
+	showScoringTile.forEach(function (ima) {    
+	  var img = document.createElement('img'); 
+	  img.src = ima;           
+	  img.style="width:200px"
+	  //console.log(ima);
+
+	  document.getElementById('firstCol').appendChild(img);   
+	  document.getElementById('firstCol').appendChild(document.createElement('br'));  
+	});
+
+	var nu = parseInt(document.querySelector('input[name="numberOfPlayers"]:checked').value);
+	temp = ArrayOfBonusTile.slice();
+	var showBonusTile = [];
+	var ii;
+		for (ii = 0; ii < (nu+3); ii++) {
+		  	tempIndex = Math.floor(Math.random()*temp.length);
+			showBonusTile.push(temp[tempIndex]);
+			temp.splice(tempIndex,1);
+		}
+
+	showBonusTile.forEach(function (ima) {    
+	  var img = document.createElement('img'); 
+	  img.src = ima;           
+	  img.style="width:100px"	  //console.log(ima);
+
+	  document.getElementById('secondColSecondRow').appendChild(img);   
+	  //document.getElementById('firstCol').appendChild(document.createElement('br'));  
+	});
+		temp.forEach(function (ima) {    
+	  var img = document.createElement('img'); 
+	  img.src = ima;           
+	  img.style="width:50px"	  //console.log(ima);
+
+	  document.getElementById('secondColSecondRow').appendChild(img);   
+	  //document.getElementById('firstCol').appendChild(document.createElement('br'));  
+	});
+
+	temp = ArrayOfFactions.slice();
+	var showFaction = [];
+	var ii;
+		for (ii = 0; ii < nu; ii++) {
+		  	tempIndex = Math.floor(Math.random()*temp.length);
+			showFaction.push(temp[tempIndex][Math.floor(Math.random()*2)]);
+			temp.splice(tempIndex,1);
+		}
+	showFaction.forEach(function (ima) {    
+	  var img = document.createElement('img'); 
+	  img.src = 'icon/'+ima;           
+	  img.style="width:100px"	  //console.log(ima);
+
+	  document.getElementById('factions').appendChild(img);   
+	});
+}
+</script>
