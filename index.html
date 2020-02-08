@@ -27,7 +27,7 @@
 }
 </style>
 
-<!--javascript程式——End--> 
+
 </head> 
 <body> 
 	<p>Welcome to use Terra Mystica Set up helper  </p>
@@ -41,7 +41,7 @@
   <br>  
 
 <p id='mapp'></p>
-<!-- <img src="icon/Auren.png" style="width:300px"> -->
+
 
 <table>
 	<tr>
@@ -67,12 +67,14 @@
 
 <script language="javascript">
 var numOfP = 5;
-var ArrayOfMap = ['Base Map', 'Revised Base Map (Reverse side of Fire & Ice)', 'Fire & Ice'];
-var ArrayOfFinalScoringTile = ['icon/finalScoring_distance.jpg', 'icon/finalScoring_edge.jpg', 'icon/finalScoring_seperate.jpg','icon/finalScoring_width.jpg'];
+var ArrayOfMap = ['Lakes', 'Fjords'];
+//var ArrayOfMap = ['Base Map', 'Revised Base Map (Reverse side of Fire & Ice)', 'Fire & Ice', 'Lakes', 'Fjords'];
+var ArrayOfFinalScoringTile = ['icon/finalScoring_distance.jpg', 'icon/finalScoring_edge.jpg', 'icon/finalScoring_seperate.jpg','icon/finalScoring_width.jpg','icon/finalScoring_trade.jpg'];
 
-var ArrayOfScoringTile = ['icon/scoring_1pristM.jpg','icon/scoring_2fireW.jpg','icon/scoring_2windW.jpg','icon/scoring_4aquaP.jpg','icon/scoring_4aquaS.jpg','icon/scoring_4fireM.jpg','icon/scoring_4landS.jpg','icon/scoring_4windS.jpg','icon/scoring_1LandM.jpg'];
+//var ArrayOfScoringTile = ['icon/scoring_1pristM.jpg','icon/scoring_2fireW.jpg','icon/scoring_2windW.jpg','icon/scoring_4aquaP.jpg','icon/scoring_4aquaS.jpg','icon/scoring_4fireM.jpg','icon/scoring_4landS.jpg','icon/scoring_4windS.jpg','icon/scoring_1LandM.jpg'];
+var ArrayOfScoringTile = ['icon/seascoring_4windS.jpg','icon/seascoring_4windB.jpg','icon/seascoring_1windP.jpg','icon/seascoring_2aquaW.jpg','icon/seascoring_2aquaG.jpg','icon/seascoring_4aquaB.jpg','icon/seascoring_4fireS.jpg','icon/seascoring_4fireP.jpg','icon/seascoring_1fireG.jpg','icon/seascoring_2landW.jpg','icon/seascoring_5landR.jpg','icon/seascoring_3landP.jpg'];
 
-var ArrayOfBonusTile = ['icon/bonus_1s.jpg','icon/bonus_3p1w.jpg','icon/bonus_4g.jpg','icon/bonus_6g.jpg','icon/bonus_dw.jpg','icon/bonus_priest.jpg','icon/bonus_range.jpg','icon/bonus_rangeVP.jpg','icon/bonus_SH.jpg','icon/bonus_tp.jpg']; 
+var ArrayOfBonusTile = ['icon/bonus_1s.jpg','icon/bonus_3p1w.jpg','icon/bonus_4g.jpg','icon/bonus_6g.jpg','icon/bonus_dw.jpg','icon/bonus_priest.jpg','icon/bonus_range.jpg','icon/bonus_rangeVP.jpg','icon/bonus_SH.jpg','icon/bonus_tp.jpg','icon/bonus_1B.jpg','icon/bonus_1G1W.jpg','icon/bonus_actionB.jpg']; 
 
 var ArrayOfFactions = [['Fakirs.png','Nomads.png'],['Auren.png','Witches.png'],['Engineers.png','Dwarves.png'],['ChaosMagicians.png','Giants.png'],['Mermaids.png','Swarmlings.png'],['Cultists.png','Halflings.png'],['Alchemists.png','Darklings.png'],['Yetis.png','IceMaidens.png'],['Dragonlords.png','Acolytes.png'],['Riverwalkers.png','Shapeshifters.png']];
 
@@ -95,10 +97,11 @@ function changeText()
 	document.getElementById('firstCol').innerHTML="";
 	document.getElementById('secondColFirstRow').innerHTML="";
 	document.getElementById('secondColSecondRow').innerHTML="";
-	document.getElementById('mapp').innerHTML="Playing Map: " + ArrayOfMap[Math.floor(Math.random()*3)];
+	document.getElementById('mapp').innerHTML="Playing Map: " + ArrayOfMap[Math.floor(Math.random()*ArrayOfMap.length)];
+	//console.log(document.getElementById('mapp').innerHTML);
 	document.getElementById('factions').innerHTML="";
 	var img = document.createElement('img'); 
-	  img.src = ArrayOfFinalScoringTile[Math.floor(Math.random()*4)];           
+	  img.src = ArrayOfFinalScoringTile[Math.floor(Math.random()*ArrayOfFinalScoringTile.length)];           
 	  img.style="width:300px"	  //console.log(ima);
 
 	  document.getElementById('secondColFirstRow').appendChild(img);   
